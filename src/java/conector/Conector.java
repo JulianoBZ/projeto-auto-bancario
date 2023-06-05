@@ -9,20 +9,22 @@ import java.sql.Statement;
 
 import java.util.ArrayList;
 
-
 public class Conector {
     
     Connection con = null;
 
+    public Conector(){
+    }
+    
     public static Connection connectDB(){
         try{
             Class.forName("org.sqlite.JDBC");
-            Connection con = DriverManager.getConnection("jdbc:sqlite:financas.db");
-            System.out.println("Conexão bem sucedida");
+            Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Juliano\\Documents\\NetBeansProjects\\finac\\financas.db");
+            System.out.println("Conexao bem sucedida");
 
             return con;
         }catch(Exception e){
-            System.out.println("Conexão falhou: "+e);
+            System.out.println("Conexao falhou: "+e);
             return null;
         }
     }
@@ -31,11 +33,11 @@ public class Conector {
         String query = "insert into transacao (vl_valor,nm_tipo,dt_data,id_usuario) values ()";
     }
     
-    public static ArrayList<String> Request_value(Connection con, String what, String table, String where, String condition){
+    public static ArrayList<String> Request_value(Connection con, String what, String table, String condition){
         ArrayList<String> value = new ArrayList<String>();
         String query = "";
-        if (where != null){
-            query = "Select "+what+" from "+table+" where "+where+" "+condition;
+        if (condition != null){
+            query = "Select "+what+" from "+table+" where "+condition;
         }else{
             query = "Select "+what+" from "+table;
         }
@@ -53,6 +55,26 @@ public class Conector {
         
     }
     
+    public static int Request_ID(Connection con, String user){
+        String get_id = "";
+        int id = 0;
+        ArrayList<String> value = new ArrayList<String>();
+        String query = "";
+        query = "Select id_usuario from usuario where nm_nome = '"+user+"'";
+        
+        try(Statement stmt = con.createStatement()){
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            id = rs.getInt(1);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        //get_id = value.get(0);
+        //id = Integer.parseInt(get_id);
+        return id;
+    }
+    
     public static void view_table(Connection con){
         
         String query = "Select * from usuario";
@@ -62,9 +84,9 @@ public class Conector {
                 String id = rs.getString("id_usuario");
                 String nome = rs.getString("nm_nome");
                 String senha = rs.getString("nm_senha");
-                System.out.println(id);
-                System.out.println(nome);
-                System.out.println(senha);
+                //System.out.println(id);
+                //System.out.println(nome);
+                //System.out.println(senha);
             }
             
             //System.out.println(rs);
@@ -73,10 +95,8 @@ public class Conector {
         }
     }
     
-    
-    public static void main(String[] args) {
-        //view_table(connectDB());
-        Request_value(connectDB(),"id_usuario","usuario",null,null);
-    }
-    
+    //public static void Main (String[] args){
+    //    view_table(connectDB());
+    //    Request_value(connectDB(),"id_usuario","usuario",null,null);
+    //}
 }
