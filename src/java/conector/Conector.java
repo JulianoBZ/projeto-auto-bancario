@@ -19,7 +19,7 @@ public class Conector {
     public static Connection connectDB(){
         try{
             Class.forName("org.sqlite.JDBC");
-            Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Juliano\\Documents\\NetBeansProjects\\finac\\financas.db");
+            Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Mary\\Documents\\GitHub\\finac.db");
             System.out.println("Conexao bem sucedida");
 
             return con;
