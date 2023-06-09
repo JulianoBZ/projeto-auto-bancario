@@ -18,13 +18,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Login</h1>
         <form action="index.jsp" method="post">
             Usuário:<br><input type="text" name="usuario"/><br>
             Senha:<br><input type="text" name="senha"/><br>
             <input type="submit" value="Login">
-            
-            
+            <br>            <br>            <br>
+        <h1>Registrar novo usuário</h1>
+        </form>
+        <form action="registrar.jsp" method="post">
+            Usuário:<br><input type="text" name="usuario"/><br>
+            Senha:<br><input type="text" name="senha"/><br>
+            <input type="submit" value="Login">
         </form>
          <%
              //Pegando as variáveis

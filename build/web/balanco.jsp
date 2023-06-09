@@ -26,10 +26,11 @@
         
         <%          
             String usuario = (String) session.getAttribute("usuario");
-            int id = (int) session.getAttribute("id");
+            int id = 0;
             if (usuario == null){
                 response.sendRedirect("index.jsp");
             }else{
+                id = (int) session.getAttribute("id");
                 out.print("Bem vindo, "+usuario+" /ID: "+id+"<br>");
                 
                 ArrayList<String> vl_valor = con.Request_value(con.connectDB(),"vl_valor","transacao","id_usuario = "+id);
@@ -51,20 +52,45 @@
                 </tr>
                 <%}%>
                 </table>
-            
-            
-             <h1></h1>
-            
-            
+                
+                <form method='post' action='insert_balanco.jsp'>
+                <label>Criar nova entrada de gasto:</label>
+                <br>
+                <input type='number' required name='valor' min='0' value='0.00' step='.01'>Valor: (ex: 12,34)</input>
+                <br>
+                <select id='insert' name='tipo'>
+                <option value='Compras'>Compras</option>
+                <option value='Contas'>Contas</option>
+                <option value='Saude'>Saúde</option>
+                <option value='Lazer'>Lazer</option>
+                <option value='Educacao'>Educação</option>
+                <option value='Alimentacao'>Alimentação</option>
+                <option value='Transporte'>Transporte</option>
+                </select>
+                <br>
+                    <button type='submit' name='submitButtonConta'>Novo Gasto</button>
+                </form>
+                
+                <form method='post' action='resultado_select.jsp'>
+                    <label>Selecionar período (a quantos dias) e tipo de conta (Opcional)</label>
+                    <br>
+                    <input type='number' name='dias' value='0'></input>
+                    <br>
+                    <select id='select' name='tipo'>
+                        <option value='Todos'>Todos</option>
+                        <option value='Compras'>Compras</option>
+                        <option value='Contas'>Contas</option>
+                        <option value='Saude'>Saúde</option>
+                        <option value='Lazer'>Lazer</option>
+                        <option value='Educacao'>Educação</option>
+                        <option value='Alimentacao'>Alimentação</option>
+                        <option value='Transporte'>Transporte</option>
+                    </select>
+                    <button type='submit' name='submitButtonRelatorio'>Ver relatório</button>
+                </form>
+                
+                
             <%}%>
-        
-       
-        <% 
-            //ArrayList<String> teste = new ArrayList<String>();
-            //ArrayList<String> teste2 = new ArrayList<String>();
-            //teste = con.Request_value(con.connectDB(),"*","transacao","id_usuario","= 1");
-            //out.println(teste); 
-        %>
             
         <!-- Encaminhando o usuário para a página de logout -->
         <br> <a href="logout.jsp"> Logout </a>
