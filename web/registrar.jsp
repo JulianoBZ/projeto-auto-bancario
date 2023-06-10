@@ -18,6 +18,7 @@
     </head>
     <body>
         <%
+           //Ao registrar novo usuário:
            //Pegando as variáveis
             String usuario = request.getParameter("usuario"); 
             String senha = request.getParameter("senha");

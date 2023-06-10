@@ -24,7 +24,8 @@
     </head>
     <body>
         
-        <%          
+        <%  
+            //Pegando variáveis de sessão
             String usuario = (String) session.getAttribute("usuario");
             int id = 0;
             if (usuario == null){
@@ -33,11 +34,13 @@
                 id = (int) session.getAttribute("id");
                 out.print("Bem vindo, "+usuario+" /ID: "+id+"<br>");
                 
+                //Preenchendo ArrayLists com valores a serem exibidos
                 ArrayList<String> vl_valor = con.Request_value(con.connectDB(),"vl_valor","transacao","id_usuario = "+id);
                 ArrayList<String> nm_tipo = con.Request_value(con.connectDB(),"nm_tipo","transacao","id_usuario = "+id);
                 ArrayList<String> dt_data = con.Request_value(con.connectDB(),"dt_data","transacao","id_usuario = "+id);
                 %>
                 
+                <!-- Tabela que exibirá os dados -->
                 <table>
                     <tr>
                     <th>Valor</th>
@@ -53,6 +56,7 @@
                 <%}%>
                 </table>
                 
+                <!-- Formulário para inserir nova transação no balanço de contas -->
                 <form method='post' action='insert_balanco.jsp'>
                 <label>Criar nova entrada de gasto:</label>
                 <br>
@@ -71,6 +75,7 @@
                     <button type='submit' name='submitButtonConta'>Novo Gasto</button>
                 </form>
                 
+                <!-- Formulário para ver o balanço das contas de acordo com categoria (ou não) e fornecendo um gráfico, se não for escolhida uma categoria, das porcentagens de cada tipo de gasto -->
                 <form method='post' action='resultado_select.jsp'>
                     <label>Selecionar período (a quantos dias) e tipo de conta (Opcional)</label>
                     <br>

@@ -18,12 +18,14 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <!-- Formulário de login, redicerionando para a própria página index -->
         <h1>Login</h1>
         <form action="index.jsp" method="post">
             Usuário:<br><input type="text" name="usuario"/><br>
             Senha:<br><input type="text" name="senha"/><br>
             <input type="submit" value="Login">
             <br>            <br>            <br>
+        <!-- Formulário de Registro, redicerionando para a página "registrar.jsp" -->
         <h1>Registrar novo usuário</h1>
         </form>
         <form action="registrar.jsp" method="post">
@@ -32,7 +34,8 @@
             <input type="submit" value="Login">
         </form>
          <%
-             //Pegando as variáveis
+            //Ao tentar login:
+            //Pegando as variáveis
             String usuario = request.getParameter("usuario");
             String senha = request.getParameter("senha");
             //Fazendo variáveis alternativas para serem lidas pelo SQL

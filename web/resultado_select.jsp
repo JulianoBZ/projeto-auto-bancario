@@ -79,6 +79,7 @@
                     <td><%= nm_tipo.get(j)%></td>
                     <td><%= dt_data.get(j)%></td>
                 </tr><%
+                    //Dependendo do tipo de conta, somar o valor na categoria
                     switch(nm_tipo.get(j)){
                         case "Contas":
                             tot_conta += vl_valor.get(j);
@@ -102,23 +103,53 @@
                             tot_transporte += vl_valor.get(j);
                             break;
                     }
+                    //Somando ao total para tirar a porcentagem
                     total += vl_valor.get(j);
                 }
-                tot_conta = (tot_conta/total) * 100;
+                //Calculando a porcentagem dos valores fornecidos
+                
+            }
+        %>
+        <table>
+            <tr>
+                <td>Contas: R$ <%= tot_conta%></td>
+            </tr>
+            <tr>
+                <td>Compras: R$ <%= tot_compras%></td>
+            </tr>
+            <tr>
+                <td>Saúde: R$ <%= tot_saude%></td>
+            </tr>
+            <tr>
+                <td>Lazer: R$ <%= tot_lazer%></td>
+            </tr>
+            <tr>
+                <td>Educação: R$ <%= tot_educacao%></td>
+            </tr>
+            <tr>
+                <td>Alimentação: R$ <%= tot_alimentacao%></td>
+            </tr>
+            <tr>
+                <td>Transporte: R$ <%= tot_transporte%></td>
+            </tr>
+        </table>
+        
+        
+        <%
+            tot_conta = (tot_conta/total) * 100;
                 tot_compras = (tot_compras/total) * 100;
                 tot_saude = (tot_saude/total) * 100;
                 tot_lazer = (tot_lazer/total) * 100;
                 tot_educacao = (tot_educacao/total) * 100;
                 tot_alimentacao = (tot_alimentacao/total) * 100;
                 tot_transporte = (tot_transporte/total) * 100;
-            }
-        %>
-        
-        <%
+            
+            //Utilizando biblioteca Gson com canvasJS para exibir o gráfico
             Gson gsonObj = new Gson();
             Map<Object,Object> map = null;
             List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
 
+            //Cada HashMap tem o atributo "y" que corresponde ao valor em porcentagem do gráfico
             map = new HashMap<Object,Object>(); map.put("label", "Contas"); map.put("y", tot_conta); list.add(map);
             map = new HashMap<Object,Object>(); map.put("label", "Compras"); map.put("y", tot_compras); list.add(map);
             map = new HashMap<Object,Object>(); map.put("label", "Saúde"); map.put("y", tot_saude); list.add(map);
@@ -129,12 +160,11 @@
 
             String dataPoints = gsonObj.toJson(list);
         %>
-        
-        
-        
+
         </table>
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
     <script>
+        <!-- Carregando a função do gráfico a ser exibido -->
         window.onload = function() {
 
         <% if(tipo != null){ %>
