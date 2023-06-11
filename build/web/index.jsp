@@ -7,6 +7,7 @@
 <%@ page import="conector.Conector" %>
 <%@ page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <% Conector con = new Conector();
    //ArrayList<String> teste = Con.Request_value(Con.connectDB(),"id_usuario","usuario",null,null);
@@ -15,24 +16,122 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Auto Bancario</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: sans-serif;
+            }
+            
+            .card-body{
+                display: flex;
+                
+            }
+            
+            .coluna1{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 40%;
+                height: 100vh;
+                background-color: #0FECC7; 
+            }
+            .coluna2{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background-color: #fff;
+                width: 60%;
+            }
+            
+            #titulo1{
+                color: #fff;
+                margin-bottom: 30px;
+                
+            }
+            
+            #titulo2{
+                color: #0FECC7;
+                margin-bottom: 30px;
+            }
+            
+            .botao{
+                color: #fff;
+                width: 200px;
+                height: 40px;
+                border: 2px solid #fff;
+                cursor: pointer;
+                border-radius: 20px;
+                background-color: #0FECC7;
+                font-weight: bold;
+                text-decoration: none;
+                font-size: 18px;
+                margin-top: 16px;
+            }
+            
+            #inputFormulario{
+                margin-top: 8px;
+                width: 400px;
+                height: 35px;
+                border-radius: 15px;
+                border: none;
+                background-color: #f6f6f6;
+                padding-left: 8px;
+                padding-right: 8px;
+                outline: none;
+            }
+            
+            .strong{
+                margin-bottom: 20px;
+            }
+        </style>
     </head>
     <body>
         <!-- Formulário de login, redicerionando para a própria página index -->
-        <h1>Login</h1>
-        <form action="index.jsp" method="post">
-            Usuário:<br><input type="text" name="usuario"/><br>
-            Senha:<br><input type="text" name="senha"/><br>
-            <input type="submit" value="Login">
-            <br>            <br>            <br>
-        <!-- Formulário de Registro, redicerionando para a página "registrar.jsp" -->
-        <h1>Registrar novo usuário</h1>
-        </form>
-        <form action="registrar.jsp" method="post">
-            Usuário:<br><input type="text" name="usuario"/><br>
-            Senha:<br><input type="text" name="senha"/><br>
-            <input type="submit" value="Login">
-        </form>
+        <%@include file="WEB-INF/jspf/navbar.jspf"%>
+        <div class="card-body">
+            
+            
+            
+                <div class="coluna1">
+                <form action="index.jsp" method="post" class="m-5">
+                    <h1 id="titulo1">Login</h1>
+
+                    <label for="usuario"><strong>Usuário:</strong></label><br>
+                    <input id="inputFormulario" type="text" name="usuario" placeholder="usuário"/><br><br>
+
+                    <label for="senha"><strong>Senha:</strong></label><br>
+                    <input id="inputFormulario" type="password" name="senha" placeholder="senha"/><br>
+
+                    <button class="botao" type="submit" value="Login"><strong>Login</strong></button>
+                </form>
+                </div>
+               
+                <!-- Formulário de Registro, redicerionando para a página "registrar.jsp" -->
+
+            
+                
+                <div class="coluna2">
+                <form action="registrar.jsp" method="post" class="m-5">
+                    <h1 id="titulo2">Cadastrar novo usuário</h1>
+                    
+                    <label for="usuario"><strong>Usuário:</strong></label><br>
+                    <input id="inputFormulario" type="text" name="usuario" placeholder="usuário"/><br><br>
+
+                    <label for="senha"><strong>Senha</strong></label><br>
+                    <input id="inputFormulario" type="password" name="senha" placeholder="senha"/><br>
+
+                    <button class="botao" type="submit" value="Login" ><strong>Cadastrar</strong></button>
+                </form>
+                </div>
+            
+            
+        </div>
          <%
             //Ao tentar login:
             //Pegando as variáveis
