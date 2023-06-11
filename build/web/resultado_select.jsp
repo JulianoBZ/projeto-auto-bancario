@@ -45,9 +45,9 @@
                    nm_tipo = con.Request_value(con.connectDB(),"nm_tipo","transacao","id_usuario = "+id+" and nm_tipo = '"+tipo+"' and dt_data BETWEEN DATE('now','-"+dias+" day') and DATE('now')");
                    dt_data = con.Request_value(con.connectDB(),"dt_data","transacao","id_usuario = "+id+" and nm_tipo = '"+tipo+"' and dt_data BETWEEN DATE('now','-"+dias+" day') and DATE('now')");
             }else{
-                vl_valor = con.Request_vl_valor(con.connectDB(),"vl_valor","transacao","id_usuario = "+id+" and dt_data BETWEEN DATE('now','-"+dias+" day') and DATE('now')");
-                nm_tipo = con.Request_value(con.connectDB(),"nm_tipo","transacao","id_usuario = "+id+" and dt_data BETWEEN DATE('now','-"+dias+" day') and DATE('now')");
-                dt_data = con.Request_value(con.connectDB(),"dt_data","transacao","id_usuario = "+id+" and dt_data BETWEEN DATE('now','-"+dias+" day') and DATE('now')");
+                vl_valor = con.Request_vl_valor(con.connectDB(),"vl_valor","transacao","id_usuario = "+id);
+                nm_tipo = con.Request_value(con.connectDB(),"nm_tipo","transacao","id_usuario = "+id);
+                dt_data = con.Request_value(con.connectDB(),"dt_data","transacao","id_usuario = "+id);
             }
         %>
         
