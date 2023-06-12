@@ -38,12 +38,14 @@
                 
                 if (val_usuario != null && val_senha != null){
                     //Se as variáveis de validação não existirem, criar usuário e enviar para a página de balanço
-                    if (!val_usuario.contains(usuario) && !val_senha.contains(senha)){
+                    if (!val_usuario.contains(usuario)){
                         //criando usuário
                         con.create_user(con.connectDB(),usuario,senha);
                         session.setAttribute("usuario", usuario);
                         session.setAttribute("id",con.Request_ID(con.connectDB(),usuario));
                         response.sendRedirect("balanco.jsp");
+                    }else{
+                    out.println("Nome de usuário já existente");
                     }
                 }
                 else{
